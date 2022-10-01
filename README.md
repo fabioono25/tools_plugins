@@ -37,3 +37,19 @@ docker image tag ex-test account/ex-test:1.0
 docker login --username=username
 docker image push account/ex-test:1.0
 ```
+
+List the networks and drivers available in the host:
+
+```
+docker network ls
+docker container run -d --net not debian
+docker network inspect bridge
+docker container exec -it container1 ping container2
+docker network create --driver bridge new_network
+docker container run -d --name container3 --net new_network alpine sleep 1000
+docker network connect bridge container3 # container3 can access bridge and new_network
+docker container exec -it container3 ifconfig
+docker contaner exec -it container3 ping 172.17.0.2
+```
+
+
