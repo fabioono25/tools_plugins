@@ -50,6 +50,11 @@ docker container run -d --name container3 --net new_network alpine sleep 1000
 docker network connect bridge container3 # container3 can access bridge and new_network
 docker container exec -it container3 ifconfig
 docker contaner exec -it container3 ping 172.17.0.2
+docker network disconect bridge container3
 ```
 
-
+Build a Nodejs structure:
+```
+npm init -y
+npm i --save ##libraries## ex: express
+```
