@@ -54,7 +54,14 @@ docker network disconect bridge container3
 ```
 
 Build a Nodejs structure:
+
 ```
 npm init -y
 npm i --save ##libraries## ex: express
 ```
+
+Observation:
+
+Dockerfile: describes how to build Docker images.
+docker-compose: used to run Docker containers.
+
