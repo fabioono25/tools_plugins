@@ -1,3 +1,8 @@
+# TOOLS AND PLUGINS
+
+This is a compilation of examples with tools, plugins, packages that I've been using in my projects during the years.
+
+
 # Docker Projects
 
 It is a compilation of notes/projets related to Docker.
