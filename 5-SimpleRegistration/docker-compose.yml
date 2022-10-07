@@ -1,17 +1,17 @@
 version: '3'
 services:
   db:     # service DB
-    image: mongo:3.4
+    image: mongo:latest
   backend: # service backend
-    image: node:8.1
+    image: node:latest
     volumes:
       - ./backend:/backend
     ports:
       - 3000:3000
     command: bash -c "cd /backend && npm i && node app"
   frontend: # service frontend
-    image: nginx:1.13
+    image: nginx:latest
     volumes:
-      - ./frontent:/usr/share/nginx/html/
+      - ./frontend:/usr/share/nginx/html/
     ports:
-      - 1234:80
+      - 80:80
