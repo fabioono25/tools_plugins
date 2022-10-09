@@ -39,11 +39,12 @@ docker login --username=username
 docker image push account/ex-test:1.0
 ```
 
-Create and remove multi-containers using docker-compose:
+Working with multi-containers and verify logs using docker-compose:
 
 ```
 docker-compose up -d
 docker-compose down
+docker-compose logs -f -t
 ```
 
 List the networks and drivers available in the host:
