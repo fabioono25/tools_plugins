@@ -44,7 +44,7 @@ services:
       - db 
       - queue
     environment:
-      - DB_NAME=email_sender
+      - DB_NAME=email_sender_not_used
     # ports:
     #   - 8080:8080
   queue:
