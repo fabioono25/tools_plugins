@@ -42,6 +42,9 @@ services:
       - queue-network
     depends_on:
       - db 
+      - queue
+    environment:
+      - DB_NAME=email_sender
     # ports:
     #   - 8080:8080
   queue:
