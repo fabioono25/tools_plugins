@@ -1,13 +1,9 @@
-# TOOLS AND PLUGINS
-
-This is a compilation of examples with tools, plugins, packages that I've been using in my projects during the years.
-
-
 # Docker Projects
 
 It is a compilation of notes/projets related to Docker.
 
 ## Commands
+ 
 
 Running a container based on Nginx [1-SimpleTest]:
 
@@ -43,6 +39,13 @@ docker login --username=username
 docker image push account/ex-test:1.0
 ```
 
+Create and remove multi-containers using docker-compose:
+
+```
+docker-compose up -d
+docker-compose down
+```
+
 List the networks and drivers available in the host:
 
 ```
@@ -56,6 +59,12 @@ docker network connect bridge container3 # container3 can access bridge and new_
 docker container exec -it container3 ifconfig
 docker contaner exec -it container3 ping 172.17.0.2
 docker network disconect bridge container3
+```
+
+Execute a Postgre SQL command:
+```
+docker-compose exec db psql -U postgres -c '\l'
+docker-compose exec db psql -U postgres -f /scripts/check.sql
 ```
 
 Build a Nodejs structure:
