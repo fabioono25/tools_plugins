@@ -1,6 +1,9 @@
 version: '3'
 volumes:
   data:
+networks:
+  database:
+  web:
 services:
   db:
     image: postgres
@@ -11,6 +14,8 @@ services:
       - data:/var/lib/postgresql/data
       - ./scripts:/scripts
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - database
   frontend:
     image: nginx
     volumes:
@@ -19,10 +24,10 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
-    # networks:
-    #   - web
-    # depends_on:
-    #   - app
+    networks:
+      - web
+    depends_on:
+      - app
   app:
     image: python:3.6
     volumes:
@@ -30,5 +35,10 @@ services:
       - ./app:/app
     working_dir: /app
     command: bash ./app.sh
+    networks:
+      - database
+      - web
+    depends_on:
+      - db 
     # ports:
     #   - 8080:8080
