@@ -69,6 +69,11 @@ docker-compose exec db psql -U postgres -f /scripts/check.sql
 docker-compose exec db psql -U postgres -d email_sender -c 'select * from emails' 
 ```
 
+Scale multiple instances of a service (e.g. worker service):
+```
+docker-compose up -d --scale worker=5
+```
+
 Build a Nodejs structure:
 
 ```
