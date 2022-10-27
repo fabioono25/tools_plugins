@@ -8,8 +8,9 @@ It is a compilation of notes/projets related to Docker.
 Running a container based on Nginx [1-SimpleTest]:
 
 ````
-docker image build -t name
-docker container run -p 1234:80 name 
+docker image build -t myimage
+docker container run --name mycontainer -p 1234:80 myimage 
+docker stop mycontainer
 ````
 
 Working with arguments [2-PassingInstructions]:
@@ -80,6 +81,49 @@ Build a Nodejs structure:
 npm init -y
 npm i --save ##libraries## ex: express
 ```
+
+Copying files in/out containers:
+````
+docker cp localfolder/. containername:/folder
+docker cp containername:/folder localfolder
+````
+
+Build an image with name and tag:
+
+````
+docker build -t name:latesttag .
+````
+
+Run in interactive and attached mode:
+````
+docker run -it test
+docker start -a -i test
+````
+
+Attach to a running container:
+````
+docker container attach test
+````
+
+In the case you have some 401 (Unauthorized error) when trying to build/pull the image from DockerHub:
+
+````
+docker logout
+docker login --username yourusername
+````
+
+Delete local images:
+`````
+docker image prune -a
+`````
+
+Push/pulling images using DockerHub:
+
+````
+docker tag oldname:tag dockerhubuser/newname:tag
+docker push fabioono25/test:latest  
+docker pull fabioono25/test:latest  
+````
 
 Observation:
 
