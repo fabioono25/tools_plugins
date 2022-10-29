@@ -27,10 +27,28 @@ Executing a container based on an image containing Python code [4-ExecPythonServ
 docker container run -it -v $(pwd):/app -p 789:8000 --name python-server exec-python-server
 ```
 
+Working with named volumes:
+````
+docker run node -v folder:/app/folderincontainer
+````
+
 Read a volume from other container:
 ```
 docker container run -it --volumes-from=python-server debian cat /log/http-server.log
 ```
+
+Read-only volumes:
+````
+docker run $(pwd):/app:ro img
+````
+
+
+Removing volumes:
+````
+docker volume rm volume_name
+docker volume prune
+````
+
 
 Tag an image:
 
@@ -99,6 +117,11 @@ Run in interactive and attached mode:
 docker run -it test
 docker start -a -i test
 ````
+
+Getting the container automatically removed when it is stopped:
+```
+docker run node -rm
+```
 
 Attach to a running container:
 ````
