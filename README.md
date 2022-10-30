@@ -150,11 +150,25 @@ docker pull fabioono25/test:latest
 
 ## Types of External Data Storages
 
-- Anonymous Volumes: Docker generates a volume during the container execution. Data is persisted while this container exists (running or not).
+The longer internal path of the defined volumes will be evaluated with high-priority:
 
-- Named Volumes: the volume is defined by the developer. Greate for data that should be persisted even when the container is removed.
+- Anonymous Volumes: managed by Docker. Docker generates a volume during the container execution. Data is persisted while this container exists (running or not):
 
-- Bind Mounts:
+````
+docker run -p 3000:80 --rm --name feedback-app -v /app/node_modules feedback-node
+````
+
+- Named Volumes: managed by Docker. the volume is defined by the developer. Greate for data that should be persisted even when the container is removed.
+
+````
+docker run -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback feedback-node
+````
+
+- Bind Mounts: managed by the user. The folder is defined on your host machine. Good for persistent, editable data (e.g. source code).
+
+````
+docker run -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v $(PWD):/app:ro -v /app/node_modules -v /app/temp feedback-node
+````
 
 Observation:
 
