@@ -1,0 +1,4 @@
+# avoid overriding my local node_modules in the image
+# Dockerfile
+node_modules
+.git

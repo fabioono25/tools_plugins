@@ -170,7 +170,38 @@ docker run -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback feedbac
 docker run -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v $(PWD):/app:ro -v /app/node_modules -v /app/temp feedback-node
 ````
 
-Observation:
+## Working with Environment Variables and Arguments
+
+````
+# define a port in Dockerfile:
+
+ENV PORT 80
+EXPOSE $PORT
+docker run --env PORT=newValue image
+````
+
+It is possible to specify a .env file:
+
+````
+PORT=8000
+
+docker run --env-file ./.env image
+````
+
+It is possible to specify arguments :
+
+````
+
+# define the argument in Dockerfile (e.g. you can build in different environments)
+ARG DEFAULT_PORT=80
+
+ENV PORT $DEFAULT_PORT
+
+docker run --build-arg DEFAULT_PORT=8000 image
+````
+
+
+## Observation:
 
 Dockerfile: describes how to build Docker images.
 docker-compose: used to run Docker containers.
