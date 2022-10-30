@@ -148,6 +148,14 @@ docker push fabioono25/test:latest
 docker pull fabioono25/test:latest  
 ````
 
+## Types of External Data Storages
+
+- Anonymous Volumes: Docker generates a volume during the container execution. Data is persisted while this container exists (running or not).
+
+- Named Volumes: the volume is defined by the developer. Greate for data that should be persisted even when the container is removed.
+
+- Bind Mounts:
+
 Observation:
 
 Dockerfile: describes how to build Docker images.
