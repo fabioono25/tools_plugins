@@ -148,7 +148,7 @@ docker push fabioono25/test:latest
 docker pull fabioono25/test:latest  
 ````
 
-## Types of External Data Storages
+## Types of External Data Storages [9-PythonInteractiveMode]
 
 The longer internal path of the defined volumes will be evaluated with high-priority:
 
@@ -170,7 +170,7 @@ docker run -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback feedbac
 docker run -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v $(PWD):/app:ro -v /app/node_modules -v /app/temp feedback-node
 ````
 
-## Working with Environment Variables and Arguments
+## Working with Environment Variables and Arguments [9-PythonInteractiveMode]
 
 ````
 # define a port in Dockerfile:
@@ -200,6 +200,46 @@ ENV PORT $DEFAULT_PORT
 docker run --build-arg DEFAULT_PORT=8000 image
 ````
 
+## Container Communication (networking)
+
+They are three types of communication using containers:
+
+- Container to WWW communication: the HTTP communication with an external URL is automatic (from inside the container to the outside website/webapi). No specific setup required.
+
+- Container to host machine communication: we can remove the host URL from something server to an specific address recognized by Docker. Here is the example:
+  - mongodb://localhost:27017/favorites
+  - mongodb://host.docker.internal:27017/favorites
+
+- Container to Container communication: they are two approaches here. 
+  1. First: Extract the IP service from the container you are running, and use it in the address. Using the MongoDB container running locally, it will work like this:
+     - Running the command *docker container inspect mongodb*
+     - Extract the IP from the property *NetworkSettings -> IPAddress*
+     - Replace the IP in the URL:  mongodb://IP_ADDRESS_FROM_CONTAINER:27017/favorites
+     - Build the image
+  
+  2. Using Container Networks: create a common place where the containers will recognize each others:
+     - Create a network manually using the command *docker network create favorites-net*
+     - Run the first container, using the network attribute: *docker run -d --name mongodb --network favorites-net mongo*
+     - Replace the IP with the container name representing mongo in the URL:  mongodb://mongodb:27017/favorites
+     - Build the image: *docker build -t favorites-node .*
+     - Run the second container, using the network attribute: *docker run --name favorites --network favorites-net -d --rm -p 3000:3000 favorites-node*
+
+![](https://github.com/fabioono25/tools_plugins/blob/assets/networking.png)
+
+![](https://github.com/fabioono25/tools_plugins/blob/assets/networking2.png)
+
+Types of drives when creating a network:
+
+````
+docker network create --driver driver_name my-net
+````
+
+- bridge (default): containers can find each other in the network.
+- host: standalone containers, isulation between container and host system is remoted (share localhost in your network).
+- overlay: multiple Docker daemons will be able to connect with each other (Swarm mode should be activated).
+- mcvlan: set a custom MAC address to a container.
+- none: add networks disabled.
+- Third-party plugins: you can make use of them either.
 
 ## Observation:
 
