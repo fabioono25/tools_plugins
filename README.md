@@ -224,9 +224,9 @@ They are three types of communication using containers:
      - Build the image: *docker build -t favorites-node .*
      - Run the second container, using the network attribute: *docker run --name favorites --network favorites-net -d --rm -p 3000:3000 favorites-node*
 
-![](https://github.com/fabioono25/tools_plugins/blob/assets/networking.png)
+![](https://github.com/fabioono25/tools_plugins/blob/main/assets/networking.png)
 
-![](https://github.com/fabioono25/tools_plugins/blob/assets/networking2.png)
+![](https://github.com/fabioono25/tools_plugins/blob/main/assets/networking.png)
 
 Types of drives when creating a network:
 
