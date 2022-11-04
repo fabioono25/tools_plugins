@@ -241,6 +241,27 @@ docker network create --driver driver_name my-net
 - none: add networks disabled.
 - Third-party plugins: you can make use of them either.
 
+## Docker Compose commands:
+
+````
+# build images in the docker-compose file
+docker-compose build
+
+# build all befores starting containers
+docker-compose up --build
+
+# creates the containers and start them
+docker-compose up
+
+# stop containers and remove them (without volumes)
+docker-compose down
+
+# stop containers and remove them (with volumes)
+docker-compose down -v
+
+````
+
+
 ## Observation:
 
 Dockerfile: describes how to build Docker images.
