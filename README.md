@@ -250,7 +250,7 @@ docker-compose build
 # build all befores starting containers
 docker-compose up --build
 
-# creates the containers and start them
+# build, creates the containers and start them
 docker-compose up
 
 # stop containers and remove them (without volumes)
