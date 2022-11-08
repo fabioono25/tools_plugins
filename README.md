@@ -261,6 +261,19 @@ docker-compose down -v
 
 ````
 
+Creating a Laravel App:
+
+````
+docker-compose run --rm composer create-project --prefer-dist laravel/laravel .
+````
+
+Starting specific services:
+
+````
+docker-compose up -d server php mysql
+docker-compose up -d -build server
+````
+
 
 ## Observation:
 
