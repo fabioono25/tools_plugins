@@ -248,7 +248,10 @@ docker network create --driver driver_name my-net
 docker-compose build
 
 # build all befores starting containers
+```
 docker-compose up --build
+docker-compose up -d --build
+```
 
 # build, creates the containers and start them
 docker-compose up
@@ -274,6 +277,10 @@ docker-compose up -d server php mysql
 docker-compose up -d -build server
 ````
 
+Artisan migrate command (publishes the schema to the database):
+````
+docker-compose run --rm artisan migrate
+````
 
 ## Observation:
 
